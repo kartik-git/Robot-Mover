@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robot Mover - Roomba Simulator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 Roomba Simulator</h1>
+            <p>Control the roomba on a 10×10 grid</p>
+        </header>
+
+        <main>
+            <section class="grid-section">
+                <h2>Grid</h2>
+                <div class="grid-container">
+                    <table class="grid" id="grid">
+                        {% for y in range(grid.height) %}
+                            <tr>
+                                {% for x in range(grid.width) %}
+                                    {% set cell = grid.cells[y][x] %}
+                                    <td 
+                                        class="cell {% if cell.isWall %}wall{% endif %} {% if roomba.x == x and roomba.y == y %}roomba active{% endif %}"
+                                        data-x="{{ x }}"
+                                        data-y="{{ y }}"
+                                        id="cell-{{ x }}-{{ y }}"
+                                        title="({{ x }}, {{ y }})">
+                                        {% if roomba.x == x and roomba.y == y %}
+                                            <div class="roomba-indicator" id="direction-indicator">
+                                                <span>{% if roomba.direction == 'NORTH' %}↑{% elif roomba.direction == 'EAST' %}→{% elif roomba.direction == 'SOUTH' %}↓{% elif roomba.direction == 'WEST' %}←{% endif %}</span>
+                                            </div>
+                                        {% endif %}
+                                    </td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </section>
+
+            <section class="controls-section">
+                <h2>Controls</h2>
+                <div class="controls">
+                    <button id="moveBtn" class="btn btn-primary">Move Forward</button>
+                    <button id="turnBtn" class="btn btn-secondary">Turn Right</button>
+                    <button id="resetBtn" class="btn btn-danger">Reset</button>
+                </div>
+
+                <div class="info-box">
+                    <h3>Roomba Status</h3>
+                    <p><strong>Position:</strong> <span id="position">(<span id="pos-x">{{ roomba.x }}</span>, <span id="pos-y">{{ roomba.y }}</span>)</span></p>
+                    <p><strong>Direction:</strong> 
+                        <span id="direction">
+                            {% if roomba.direction == 'NORTH' %}North ↑{% elif roomba.direction == 'EAST' %}East →{% elif roomba.direction == 'SOUTH' %}South ↓{% elif roomba.direction == 'WEST' %}West ←{% endif %}
+                        </span>
+                    </p>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #999;"><em>Grid: 10×10 with boundary walls</em></p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Robot Mover © 2025 | Turn right on wall collision | Boundary walls on all edges</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

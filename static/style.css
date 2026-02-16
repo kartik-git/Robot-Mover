@@ -1,0 +1,271 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    max-width: 900px;
+    width: 100%;
+    padding: 40px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    color: #333;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+header p {
+    color: #666;
+    font-size: 1.1em;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+/* Grid Section */
+.grid-section h2,
+.controls-section h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+.grid-container {
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+}
+
+.grid {
+    border-collapse: collapse;
+    background: #f5f5f5;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.grid td {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #ddd;
+    position: relative;
+    background-color: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.grid td:hover {
+    background-color: #f0f0f0;
+}
+
+.grid td.wall {
+    background-color: #333;
+    cursor: not-allowed;
+    border-color: #222;
+}
+
+.grid td.roomba {
+    background-color: #e3f2fd;
+}
+
+.grid td.roomba.active {
+    background-color: #bbdefb;
+    font-weight: bold;
+}
+
+/* Roomba Indicator */
+.roomba-indicator {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #667eea;
+}
+
+/* Controls Section */
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.btn-primary {
+    background-color: #667eea;
+}
+
+.btn-primary:hover {
+    background-color: #5568d3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background-color: #f093fb;
+}
+
+.btn-secondary:hover {
+    background-color: #e082e9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(240, 147, 251, 0.4);
+}
+
+.btn-secondary:active {
+    transform: translateY(0);
+}
+
+.btn-danger {
+    background-color: #ff6b6b;
+}
+
+.btn-danger:hover {
+    background-color: #ee5a52;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+}
+
+.btn-danger:active {
+    transform: translateY(0);
+}
+
+/* Info Box */
+.info-box {
+    background-color: #f9f9f9;
+    border-left: 4px solid #667eea;
+    padding: 20px;
+    border-radius: 6px;
+}
+
+.info-box h3 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+.info-box p {
+    color: #666;
+    margin-bottom: 10px;
+    font-size: 0.95em;
+}
+
+.info-box p:last-child {
+    margin-bottom: 0;
+}
+
+.info-box strong {
+    color: #333;
+    font-weight: 600;
+}
+
+.info-box span {
+    color: #667eea;
+    font-weight: 600;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid #eee;
+    color: #999;
+    font-size: 0.9em;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    main {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    header h1 {
+        font-size: 2em;
+    }
+
+    .grid td {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .controls {
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    .btn {
+        flex: 1;
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+    }
+
+    header h1 {
+        font-size: 1.5em;
+    }
+
+    .grid td {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+
+    .controls {
+        gap: 8px;
+    }
+
+    .btn {
+        padding: 8px 10px;
+        font-size: 0.85em;
+    }
+
+    .info-box {
+        padding: 15px;
+    }
+}
